@@ -3,19 +3,38 @@
 <head>
 	<meta charset="UTF-8">
 	<title>Document</title>
+	<link rel="stylesheet" type="text/css" href="CSS/style.css">
+	<link href='http://fonts.googleapis.com/css?family=News+Cycle|Oswald:400,700' rel='stylesheet' type='text/css'>
+	<script src="http://code.jquery.com/jquery.min.js"></script>
+	<script src="JS/app.js"></script>
 </head>
 <body>
 	<div id="main-quiz-div">
-	<div id="intro">Guess the Character's Names!</div>
-	<div class="question-container">
-		<div id="instructions"> 
-		<p>How well do you know your video games?</p>
-		<p>Guess the name of the character that appears, then hit next to submit your guess!</p>
-		</div>
-		<div class="nav-container">
-		<button id="start-button" type="button">Start!</button>
+		<div id="intro">Guess the Character's Names!</div>
+		<div class="question-container">
+			<div id="instructions"> 
+				<p>How well do you know your video games?</p>
+				<p>Guess the name of the character that appears, then hit next to submit your guess!</p>
+			</div>
+			<div class="questions">
+				<img id="image"><br>
+				<div id="answer-box">
+						<input type="radio" name="option" class="option" value="0"><span class="answer1"></span></input><br>
+						<input type="radio" name="option" class="option" value="1"><span class="answer2"></span></input><br>
+						<input type="radio" name="option" class="option" value="2"><span class="answer3"></span></input><br>
+						<input type="radio" name="option" class="option" value="3"><span class="answer4"></span></input><br>
+				</div>
+				<div class="results">
+					<div class="feedback">
+						
+					</div>
+				</div>
+			</div>
+			<div class="nav-container">
+				<input type="button" id="start-button" value="Start!">
+				<input type="button" id="next-button" value="Next Character!">
+			</div>
 		</div>
 	</div>
-
 </body>
 </html>

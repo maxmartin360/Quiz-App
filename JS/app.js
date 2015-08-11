@@ -1,46 +1,91 @@
-var question1 {
-	this.img: <url>
-	correctAnswer = 2
-	userAnswer: 0
-	answer1: "Angry Pizza Man"
-	answer2: "mario"
-	answer3: "That Crazy Plumber"
-	answer4: "Luigi"
+
+function Questions (number, answer, image, answer1, answer2, answer3, answer4) {
+	this.number = number;
+	this.answer = answer;
+	this.image = image;
+	this.answer1 = answer1;
+	this.answer2 = answer2;
+	this.answer3 = answer3;
+	this.answer4 = answer4;
+};
+
+var question1 = new Questions (0, 2, 'http://i.imgur.com/Vp3AQNy.jpg', "Angry Pizza Man", "Mario", "Wario", "Luigi");
+var question2 = new Questions (1, 1, 'http://i.imgur.com/8D2Knvp.jpg', "Link", "Zelda", "shiek", "Cheapest Smash Bros Character Ever");
+var question3 = new Questions (2 ,4, 'http://i.imgur.com/4lL9RgF.jpg', "Halo", "Cortana", "Samus", "Master Chief");
+var question4 = new Questions (3, 3, 'http://i.imgur.com/7BrnQ52.jpg', "Leon", "Wesker", "CHRIIIIISSSS!", "Jake");
+var question5 = new Questions (4, 2, 'http://i.imgur.com/UG2ZtJr.jpg', "Spyro", "Crash Bandicoot", "Cortex", "Wizzy the Wombat");
+
+var questionList = [
+	question1, 
+	question2,
+	question3,
+	question4,
+	question5,
+]
+
+var numberCorrect = 0;
+var currentQuestionNumber = 0;
+var currentQuestion;
+
+function nextQuestion() {
+	if (currentQuestionNumber < 5) {
+		currentQuestion = questionList[currentQuestionNumber];
+		$('#image').attr('src', currentQuestion.image);
+		$('.answer1').text(currentQuestion.answer1);
+		$('.answer2').text(currentQuestion.answer2);
+		$('.answer3').text(currentQuestion.answer3);
+		$('.answer4').text(currentQuestion.answer4); 
+	} else {
+		endGame();
+	};
+};
+
+function checkAnswer() {
+	$('input[name=option]:checked').attr('value');
+		if('value' === currentQuestion.answer) {
+			console.log('correct!');
+			numberCorrect++;
+		};
+	};
+
+function endGame() {
+	$('.questions').hide();
+	$('results').show();
+	$('.feedback').show();
+	if (numberCorrect === 1){
+		$('.feedback').text("looks like you only got one right. Bet you have a girlfriend or something...");
+	} else if (numberCorrect === 2){
+		$('.feedback').text("Well two right is better than none I guess...");
+	} else if (numberCorrect === 3){
+		$('.feedback').text("You scored 3 out of 5. Casual...");
+	} else if (numberCorrect === 4){
+		$('.feedback').text("4 out of 5 is still the first place loser...");
+	} else if (numberCorrect === 5){
+		$('.feedback').text("5 out of 5...   Nerd.");
+	} else if (numberCorrect === 0){
+		$('.feedback').text("Man... you didn't even try...");
 	}
 
-var question2 = Object.create(question1); 
-	question2.img = 
-	question2.correctAnswer = answer1
-	question2.userAnswer = 0
-	question2.answer1 = "Link"
-	question2.answer2 = "Zelda"
-	question2.answer3 = "shiek"
-	question2.answer4 = "Cheapest Smash Bros Character Ever"
+};
+
+
+// hit start button to initiate quiz
+
+//$('#start-button').click(function(){
+	//console.log('im being clicked');
+	//$('.instructions').hide();
+//}
+
+$(document).ready(function(){
+
+	nextQuestion();
+
+	$("#next-button").on("click", function(){
+		$('[name="option"]').removeAttr('checked');
+		currentQuestionNumber++;
+		nextQuestion();
+
+	});
+
 	
-
-var question3 = Object.create(question1); 
-	question3.img = 
-	question3.correctAnswer = answer4
-	question3.userAnswer = 0
-	question3.answer1 = "Halo"
-	question3.answer2 = "Cortana"
-	question3.answer3 = "Samus"
-	question3.answer4 = "Master Chief"
-
-var question4 = Object.create(question1); 
-	question4.img = <a href="http://imgur.com/7BrnQ52"><img src="http://i.imgur.com/7BrnQ52.jpg" title="source: imgur.com" /></a>
-	question4.correctAnswer = answer3
-	question4.userAnswer = 0
-	question4.answer1 = "Leon"
-	question4.answer2 = "Wesker"
-	question4.answer3 = "CHRIIIIISSSS!"
-	question4.answer4 = "Jake"
-
-var question5 = Object.create(question1); 
-	question5.img = <a href="http://imgur.com/UG2ZtJr"><img src="http://i.imgur.com/UG2ZtJr.jpg" title="source: imgur.com" /></a>
-	question5.correctAnswer = answer2
-	question5.userAnswer = 0
-	question5.answer1 = "Spyro"
-	question5.answer2 = "Crash Bandicoot"
-	question5.answer3 = "Cortex"
-	question5.answer4 = "Wizzy the Wombat"
+});

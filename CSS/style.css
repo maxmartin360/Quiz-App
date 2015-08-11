@@ -9,12 +9,19 @@ body {
     border-radius: 2px;
     width: 600px; 
 }
+#intro {
+	font-size: 50px;
+	font-family: 'Oswald', sans-serif;
+}
+
 #instructions {
+	display: none;
 	font-family: 'News Cycle', sans-serif;
 	font-size: 30px;
 	text-align: center;
 }
 #start-button{
+
 	display: inline-block;
 }
 .question-container{
@@ -27,6 +34,7 @@ body {
 	margin: 0 auto;
 }
 #start-button {
+	display: none;
 	font-family: 'News Cycle', sans-serif;
 	width:100px;
 	height: 50px;
@@ -56,3 +64,20 @@ body {
 	border-radius: 5px;
 	box-shadow: 1.75px 1.75px #962d22;
 	}
+
+.questions-panel {
+	display:block;
+	width: 600px;
+	height: 400px;
+}
+.answer-bars{
+	margin: 0 auto;
+	list-style-type: none;
+	font-family: 'News Cycle', sans-serif;
+	font-size: 20px;
+	padding-left: 0;
+}
+#images {
+	margin-left: auto;
+	margin-right: auto;
+}
