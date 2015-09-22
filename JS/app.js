@@ -41,29 +41,37 @@ function nextQuestion() {
 };
 
 function checkAnswer() {
-	$('input[name=option]:checked').attr('value');
-		if('value' === currentQuestion.answer) {
-			console.log('correct!');
-			numberCorrect++;
-		};
+	var userAnswer = $('input[name=option]:checked').attr('value');
+		console.log(userAnswer);
+	if(userAnswer == currentQuestion.answer) {
+		console.log('correct!');
+		numberCorrect++;
 	};
+};
 
 function endGame() {
 	$('.questions').hide();
-	$('results').show();
-	$('.feedback').show();
-	if (numberCorrect === 1){
-		$('.feedback').text("looks like you only got one right. Bet you have a girlfriend or something...");
-	} else if (numberCorrect === 2){
-		$('.feedback').text("Well two right is better than none I guess...");
-	} else if (numberCorrect === 3){
-		$('.feedback').text("You scored 3 out of 5. Casual...");
-	} else if (numberCorrect === 4){
-		$('.feedback').text("4 out of 5 is still the first place loser...");
-	} else if (numberCorrect === 5){
-		$('.feedback').text("5 out of 5...   Nerd.");
-	} else if (numberCorrect === 0){
-		$('.feedback').text("Man... you didn't even try...");
+	$('.results').show();
+	
+	switch (numberCorrect){
+		case 1:
+			$('.results').text("looks like you only got one right. Bet you have a girlfriend or something...");
+			break;
+		case 2:
+			$('.results').text("Well two right is better than none I guess...");
+			break;
+		case 3:
+			$('.results').text("You scored 3 out of 5. Casual...");
+			break;
+		case 4:
+			$('.results').text("4 out of 5 is still the first place loser...");
+			break;
+		case 5:
+			$('.results').text("5 out of 5...   Nerd.");
+			break;
+		default:
+			$('.results').text("Try again!");
+			break;
 	}
 
 };
@@ -81,6 +89,7 @@ $(document).ready(function(){
 	nextQuestion();
 
 	$("#next-button").on("click", function(){
+		checkAnswer();
 		$('[name="option"]').removeAttr('checked');
 		currentQuestionNumber++;
 		nextQuestion();
